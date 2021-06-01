@@ -1,4 +1,4 @@
---extra-index-url https://download.pytorch.org/whl/torch_stable.html
+--i https://download.pytorch.org/whl/torch_stable.html
 asgiref==3.3.4
 certifi==2021.5.30
 chardet==4.0.0
