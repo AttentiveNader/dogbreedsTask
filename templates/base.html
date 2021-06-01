@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dog breeds api</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<style>
+    .container{
+        display: block;
+        margin: auto;
+        margin-top:150px;
+        min-width: 200px;
+        min-height: 200px;
+        max-width: 400px;
+        border: 2px solid black;
+        border-radius: 12px;
+        padding:15px;
+    }
+    .btn {
+        padding: 12px 16px;
+        cursor: pointer;
+        border-width: 1px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 500;
+        {#-webkit-box-shadow: 0 10px 20px -6px rgb(0 0 0 / 12%);#}
+        {#-moz-box-shadow: 0 10px 20px -6px rgba(0,0,0,.12);#}
+        {#box-shadow: 0 10px 20px -6px rgb(0 0 0 / 12%);#}
+        overflow: hidden;
+        position: relative;
+        -moz-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        -webkit-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+    .btn.btn-primary {
+        background: #ec8f6a;
+        border-color: #ec8f6a;
+        color: #fff;
+    }
+    .container label {
+        min-width: 70px;
+    }
+    .container *{
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+<body>
+<div class="container">
+    <label for="image">the dog image</label>
+    <input type="file" name="image" id="image" alt="Submit" width="48" height="48">
+    <input type="button" class="btn btn-primary" value="Submit" onclick="Submit()">
+    <p id="label"></p>
+    <p id="score"></p>
+</div>
+</body>
+<script>
+    function Submit(){
+        let image =  document.getElementById("image")
+        let reader = new FileReader()
+        let imageData = image.files[0]
+        let labelElement = document.getElementById("label")
+        let scoreElement = document.getElementById("score")
+        reader.onloadend = function() {
+            image = reader.result
+            image = image.split(/,(.+)/)[1]
+            axios.post("/get-breed/", {"image":image}).then((response)=>{
+                let label = response.data.breed
+                let score = response.data.score
+                labelElement.innerHTML = label
+                scoreElement.innerHTML = score
+            })
+        }
+        reader.readAsDataURL(imageData);
+    }
+</script>
+</html>
