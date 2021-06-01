@@ -1,1 +1,1 @@
-web: gunicorn dogbreedstask.wsgi
+web: gunicorn dogBreedsTask.wsgi
