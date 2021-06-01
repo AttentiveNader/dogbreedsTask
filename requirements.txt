@@ -19,11 +19,11 @@ pytz==2021.1
 requests==2.25.1
 six==1.16.0
 sqlparse==0.4.1
---extra-index-url https://download.pytorch.org/whl/torch_stable.html
+-f https://download.pytorch.org/whl/torch_stable.html
 torch==1.8.1+cpu
---extra-index-url https://download.pytorch.org/whl/torch_stable.html
+-f https://download.pytorch.org/whl/torch_stable.html
 torchaudio==0.8.1
---extra-index-url https://download.pytorch.org/whl/torch_stable.html
+-f https://download.pytorch.org/whl/torch_stable.html
 torchvision==0.9.1+cpu
 tqdm==4.61.0
 typing-extensions==3.10.0.0
